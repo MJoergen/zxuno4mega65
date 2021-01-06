@@ -49,8 +49,14 @@ module control_enable_options(
 
 `include "config.vh"
     
+`ifdef STANDARD_SPECTRUM    
     reg [7:0] devoptions = 8'b00101000;  // initial value. Modo 128K
     reg [7:0] devopts2 = 8'h00;    // initial value
+`elsif SE_BASIC_AND_UNODOS
+    reg [7:0] devoptions = 8'b01101000;
+    reg [7:0] devopts2 = 8'h00000100;
+`endif    
+    
     assign disable_ay = devoptions[0];
 `ifdef TURBOSUND_SUPPORT    
     assign disable_turboay = devoptions[1];

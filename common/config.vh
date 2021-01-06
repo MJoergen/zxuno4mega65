@@ -27,11 +27,8 @@
 
 // Build options (comment out to disable a specific option)
 
-//`define LOAD_ROM_FROM_FLASH_OPTION
-`define BOOTLOADER_FLASH_ROM "bootloader_to_bios_and_easter_egg.hex"
-
 //Bootloader for 128en.hex incl. CRC check
-`define BOOTLOADER_STANDARD  "bootloader_copy_bram_to_sram.hex"
+//`define BOOTLOADER_STANDARD  "bootloader_copy_bram_to_sram.hex"
 
 //SOXZ Bootloader
 //`define BOOTLOADER_STANDARD "../MEGA65/soxz/soxz_bootloader.hex"
@@ -41,10 +38,18 @@
 
 
 // The following two defines are taken into account only if LOAD_ROM_FROM_FLASH_OPTION is not defined
-`define DEFAULT_SYSTEM_ROM "128en.hex"
+//`define STANDARD_SPECTRUM
+//`define DEFAULT_SYSTEM_ROM "128en.hex"
 //`define DEFAULT_SYSTEM_ROM "../MEGA65/soxz/128en.hex"
 //`define DEFAULT_SYSTEM_ROM "../chloe/se.hex"
 //`define DEFAULT_SYSTEM_ROM "../test/keyb_test/testkeys_rasm_version.hex"
+//`define DEFAULT_DIVMMC_ROM "esxdos088.hex"
+
+// undefine STANDARD_SPECTRUM and the others above and define the following section
+// to enable SE BASIC and UNODOS3
+`define SE_BASIC_AND_UNODOS
+`define BOOTLOADER_STANDARD "bootloader_copy_bram_to_sram_sebasic.hex"
+`define DEFAULT_SYSTEM_ROM "se.hex"
 `define DEFAULT_DIVMMC_ROM "esxdos088.hex"
 
 //`define MIDI_SYNTH_OPTION
