@@ -34,17 +34,7 @@ module rom (
 
 `include "config.vh"
 
-`ifdef LOAD_ROM_FROM_FLASH_OPTION
-   reg [7:0] mem[0:16383];
-   integer i;
-   initial begin  
-      for (i=0;i<16384;i=i+1) begin
-        mem[i] = 8'h00;
-      end
-      $readmemh (`BOOTLOADER_FLASH_ROM, mem, 0);      
-   end
-`else
-   reg [7:0] mem[0:9215];  // este tama�o es el justito para que quepa en un bloque de BRAM, que es de 9KB
+   reg [7:0] mem[0:9215];  // need to make sure this is large enough to fit the bootloader and DIVMMC
    integer i;
    initial begin  
       for (i=0;i<9216;i=i+1) begin
@@ -53,7 +43,6 @@ module rom (
       $readmemh (`BOOTLOADER_STANDARD, mem, 0);            
       $readmemh (`DEFAULT_DIVMMC_ROM, mem, 512);      
    end
-`endif
 
    always @(posedge clk) begin
      dout <= mem[a];
