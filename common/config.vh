@@ -27,30 +27,23 @@
 
 // Build options (comment out to disable a specific option)
 
-//Bootloader for 128en.hex incl. CRC check
-//`define BOOTLOADER_STANDARD  "bootloader_copy_bram_to_sram.hex"
-
-//SOXZ Bootloader
-//`define BOOTLOADER_STANDARD "../MEGA65/soxz/soxz_bootloader.hex"
-
-//Bootloader without CRC check and without ESXDOS
-//`define BOOTLOADER_STANDARD  "bootloader_copy_bram_to_sram_no_crc.hex"
-
-
-// The following two defines are taken into account only if LOAD_ROM_FROM_FLASH_OPTION is not defined
+//Define the following four defines and undefine the SE Basic section
+//to create a standard ZX Spectrum using the original ROM
 //`define STANDARD_SPECTRUM
-//`define DEFAULT_SYSTEM_ROM "128en.hex"
-//`define DEFAULT_SYSTEM_ROM "../MEGA65/soxz/128en.hex"
-//`define DEFAULT_SYSTEM_ROM "../chloe/se.hex"
-//`define DEFAULT_SYSTEM_ROM "../test/keyb_test/testkeys_rasm_version.hex"
-//`define DEFAULT_DIVMMC_ROM "esxdos088.hex"
+//`define BOOTLOADER_STANDARD   "bootloader_copy_bram_to_sram.hex"
+//`define DEFAULT_SYSTEM_ROM    "128en.hex"
+//`define DEFAULT_DIVMMC_ROM    "esxdos088.hex"
 
-// undefine STANDARD_SPECTRUM and the others above and define the following section
-// to enable SE BASIC and UNODOS3
+ //Undefine STANDARD_SPECTRUM and the others above and define the following section
+ //to enable SE BASIC and UNODOS3
 `define SE_BASIC_AND_UNODOS
-`define BOOTLOADER_STANDARD "bootloader_copy_bram_to_sram_sebasic.hex"
-`define DEFAULT_SYSTEM_ROM "se.hex"
-`define DEFAULT_DIVMMC_ROM "esxdos088.hex"
+`define BOOTLOADER_STANDARD   "bootloader_copy_bram_to_sram_sebasic.hex"
+`define DEFAULT_SYSTEM_ROM    "se.hex"
+`define DEFAULT_DIVMMC_ROM    "unodos3.hex"
+
+//Bootloader without CRC check and without ESXDOS.
+//`define STANDARD_SPECTRUM
+//`define BOOTLOADER_STANDARD  "bootloader_copy_bram_to_sram_no_crc.hex"
 
 //`define MIDI_SYNTH_OPTION
 //`define UART_ESP8266_OPTION
@@ -76,7 +69,7 @@
 //`define FPGA_GENERATES_COLOR_CLOCK_OPTION
 
 // ZXUNO core ID string. Must be padded with zero bytes to the right (16 bytes total)
-  localparam COREID_STRING = {"EXP27-250820", 8'h00, 8'h00, 8'h00, 8'h00};
+  localparam COREID_STRING = {"ZXUNO4MEGA65-09", 8'h00};
 
 // Power-on/FPGA PROG video configuration  
   localparam
